@@ -3,14 +3,27 @@
 
 import turtle
 import random
+
 wn = turtle.Screen()
 tess = turtle.Turtle()
+wn.setup(3000,3000)
 
-phraselst = [""]
+tess.speed(50)
+
+
+phraselst = ["santa claus", "hanukkah", "christmas", "coal", "present", "dreidel", "kwanzaa", "rudolph", "reindeer", "christmas tree"]
 phrase = random.choice(phraselst)
 
+dictx = {"1x":-580,"2x": -420,"3x": -260,"4x": -100,"5x": 60,"6x": 220,"7x": 380,"8x": 540,"9x": -580,"10x": -420,"11x": -260,"12x":-100,"13x": 60,"14x": 220,"15x": 380,"16x": 540}
+
+dicty = {"1y":0,"2y": 0,"3y": 0,"4y": 0,"5y": 0,"6y": 0,"7y": 0,"8y": 0,"9y": -160,"10y": -160,"11y": -160,"12y": -160,"13y": -160,"14y": -160,"15y": -160,"16y": -160}
+
+wronglst = []
 
 
+
+
+#Draws out each line for each charater
 def character(n):
     tess.penup()
     tess.goto(-600,0)
@@ -36,21 +49,142 @@ def character(n):
                  tess.goto(-600,-300)
             char1+= 1
 
-        
 
-def error():
-    n = 2
-
-
+#draws out board
 def pole():
-    n = 3
+    tess.penup()
+    tess.goto(-400,100)
+    tess.left(90)
+    tess.pendown()
+    tess.forward(250)
+    tess.left(90)
+    tess.forward(100)
+    tess.left(90)
+    tess.forward(30)
+    tess.right(270)
 
-def getword():
-    n = 4
 
+
+def guess1(wordlst):
+    count = 0
+    wrong = 0
+    tess.penup()
+    count1=0
+    correct = 0
+    newlst = set(wordlst)
+    
+    
+  
+    for elm in wordlst:
+        count+=1
+    
+    while wrong <=5 and correct != len(newlst):
+        guess = str(input("Guess character: "))
+        if guess in wordlst:
+            correct+=1
+            for i in wordlst:
+                count1+=1
+                if guess ==i:
+                    keyx = str(count1) + "x"
+                    x = dictx[keyx]
+                    keyy = str(count1) + "y"
+                    y = dicty[keyy]
+                    tess.goto(x,y)
+                    tess.pendown()
+                    tess.write(guess, font=("Arial", 60, "normal"))
+                    tess.penup()
+    
+        if correct == len(newlst):
+            tess.goto(100, 280)
+            tess.write("You WON!!!!!!!", font=("Arial", 60, "normal"))
+            
+        count1=0
+        if guess not in wordlst:
+            wrong+=1
+            if wrong == 1:
+                head()
+            elif wrong == 2:
+                body()
+            elif wrong == 3:
+                leftleg()
+            elif wrong == 4:
+                rightleg()
+            elif wrong == 5:
+                rightarm()
+            elif wrong == 6:
+                leftarm()
+                tess.goto(100, 280)
+                tess.write("You Lost!!!!!!!", font=("Arial", 60, "normal"))
+               
+            
+            
+                
+
+                    
+                 
+def head():
+    tess.penup()
+    tess.goto(-500, 280)
+    tess.pendown()
+    tess.circle(20)
+    tess.penup()
+
+ 
+def body():
+    tess.goto(-500, 280)
+    tess.right(90)
+    tess.pendown()
+    tess.forward(100)
+    tess.penup()
+
+def leftleg():
+    tess.goto(-500, 180)
+    tess.right(45)
+    tess.pendown()
+    tess.forward(50)
+    tess.penup()
+
+def rightleg():
+    tess.goto(-500, 180)
+    tess.pendown()
+    tess.left(90)
+    tess.forward(50)
+    tess.penup()
+    
+
+def rightarm():
+    tess.penup()
+    tess.goto(-500, 250)
+    tess.left(45)
+    tess.pendown()
+    tess.forward(50)
+    tess.penup()
+ 
+def leftarm():
+    tess.penup()
+    tess.goto(-500, 250)
+    tess.left(180)
+    tess.pendown()
+    tess.forward(50)
+    tess.penup()
 
 def main():
     pole()
-    
-n = "Hel looooooo"
-character(n)
+    n = random.choice(phraselst)
+    character(n)
+    wordlst = list(n)
+    guess1(wordlst)
+ 
+
+
+main()
+
+
+
+
+
+
+
+
+
+
