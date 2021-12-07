@@ -10,5 +10,9 @@ This project was Hangman (christmas edition). A random phrase or word was picked
 Adversities and problem solving:
 The hardest part of the code was drawing out the correctly guessed character on the corresponding line and also drawing out letters that appeared multiple times in the word (such as e or i). To solve the first part, I created two dictionary which stored the x and y corridates of each line. If the user correctly guess the first charavter, than I would access the first character's cordinates in the dictionary and draw out the character. The way I solved the second problem was by using multiple nested if and while loops. By doing so, the guessed character was iterated throughout the word multiple times to ensure that each occurance of the letter was drawn out. 
 
+Things Learned:
+I learned how to use dictionaries to store coordinates. I also learned how to use multiple nested if statements and while loops while keeping track of what the code was doing during each iteration.
+
+
 
 
